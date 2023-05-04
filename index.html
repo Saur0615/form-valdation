@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Valdation</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" ></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row mt-2">
+            <div class="col">
+              <form onsubmit ="return(validate());" method="POST" name = "myForm"  >
+                <div class="modal-header p-2 justify-content-center">
+                    <h5 class="text-center">Enquiry Form</h5>-<h5></h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body pb-0">
+                    <form>
+                        <div class="form-group">
+                            <label class="font-weight-bolder" for="inputname">Name<span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="inputname" name="name" placeholder="Enter your name" value="">
+                            <span id="username" class="text-danger font-weight-bold"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="font-weight-bolder" for=" exampleInputnumber">Mobile no<span class="text-danger">*</span></label>
+                            <input type="tel" class="form-control" id="exampleInputnumber" placeholder="Enter your Mobile number" name="mobile">
+                           <span id="userphone" class="text-danger font-weight-bold"></span> 
+</div>
+                        <div class="form-group">
+                            <label class="font-weight-bolder" for="exampleInputEmail3">Email address<span class="text-danger">*</span></label>
+                            <input type="email" class="form-control" id="exampleInputEmail3" name="email"  placeholder="Enter your email">
+   <span id="useremail" class="text-danger font-weight-bold"> </span>
+                        </div>
+ <div class="form-group">
+                            
+                            <input type="hidden" readonly class="form-control" name="productname"  >
+                        </div>
+
+                        <div class="form-group">
+                            <label class="font-weight-bolder" for=" exampleInputpincode">Pincode<span class="text-danger">*</span></label>
+                            <input type="text" readonly class="form-control" id="exampleInputpincode"  name="pincode" placeholder="Select pincode first">
+                         <span id="userpincode" class="text-danger font-weight-bold">
+        </span>
+</div>
+
+                        <div class="form-group">
+                            <label class="font-weight-bolder" for=" exampleFormControlTextarea1">Message<span class="text-danger">*</span></label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="message" ></textarea>
+    <span id="usermessage" class="text-danger font-weight-bold"> </span>
+                        </div>
+
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <input type="submit" name="submit" class="btn btn-primary" value="Submit" >
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+    <script type = "text/javascript">
+      
+           // Form validation code will come here.
+           function validate() {
+               
+              if( document.myForm.name.value == "" ) {
+                 document.getElementById("username").innerHTML = "Please Enter your Name";
+                  document.myForm.name.focus() ;
+                 return false;
+              }
+               if( document.myForm.name.value == "" ) {
+                 document.getElementById("username").innerHTML = "Please Enter your Name";
+                  document.myForm.name.focus() ;
+                 return false;
+              }
+              if( document.myForm.mobile.value == ""  ) {
+                 document.getElementById("userphone").innerHTML = "Please provide your phone number!"; 
+                 //alert( "Please provide your phone number!" );
+                 document.myForm.mobile.focus() ;
+                 return false;
+              }
+              
+              
+              
+               if( document.myForm.mobile.value.length < 10 || document.myForm.mobile.value.length >10){
+                 document.getElementById("userphone").innerHTML = "Your phone number is minimim and maximum 10 digits!"; 
+             //alert( "Your phone number is minimim and maximum 10 digits!" );
+                 document.myForm.mobile.focus() ;
+                 return false;
+              }
+              
+              if( isNaN(document.myForm.mobile.value)){
+                 document.getElementById("userphone").innerHTML = "Your phone number is only accept number!"; 
+                 //alert( "Your phone number is minimim and maximum 10 digits!" );
+                 document.myForm.mobile.focus() ;
+                 return false;
+              }
+               
+              if( document.myForm.email.value == "" ) {
+                 document.getElementById("useremail").innerHTML = "Please provide your Email!"; 
+                 //alert( "Please provide your Email!" );
+                 document.myForm.email.focus() ;
+                 return false;
+              }
+              if( document.myForm.pincode.value == "" || isNaN( document.myForm.pincode.value )) {
+                 document.getElementById("userpincode").innerHTML = "Sorry !!! First check the pincode availability.";
+                 //alert( "Please provide a pincode in the format of number." );
+                 document.myForm.pincode.focus() ;
+                 return false;
+              }
+              
+             if (document.myForm.pincode.value.length < 6 || document.myForm.pincode.value.length > 6) 
+             {
+             document.getElementById("userpincode").innerHTML = "Pincode must be 6 characters long";
+             //alert( "Pincode must be 6 characters long" );
+             document.myForm.pincode.focus() ;
+             return false;
+             }
+                 
+              if( document.myForm.message.value == "" ) {
+                 document.getElementById("usermessage").innerHTML = "Please provide your Message!";
+                 //alert( "Please provide your Message!" );
+                 document.myForm.message.focus() ;
+                 return false;
+              }
+              
+              else{
+                 // document.getElementById("submitid").innerHTML ="Your message has been send successfully.We will get back to you soon.";
+                  alert("Your message has been send successfully.We will get back to you soon.");
+                 // document.myForm.submitid.focus() ;
+              }
+            
+              return( true );
+           }
+        //-->
+     </script>
+   
+</body>
+</html>
